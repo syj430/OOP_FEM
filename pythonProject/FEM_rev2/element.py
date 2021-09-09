@@ -12,7 +12,7 @@ class ELEMENT:
     def getElementData(self):
         return self.element
 
-    def DMAT(self):
+    def Dmat(self):
         # 평면응력
         if self.elem_type == 'CPS4':        # 평면응력
             D = np.zeros((3,3))
@@ -97,9 +97,9 @@ class ELEMENT:
             J = 1/8 * np.transpose(Xc) @ Jmat @ Yc
         return J
 
-    def computeke(self, e):
+    def kemat(self, e):
         ke = np.zeros((8, 8))
-        Dmat = self.DMAT()
+        Dmat = self.Dmat()
 
         # FIXME e 바꿔
         h=0.12
@@ -138,8 +138,8 @@ class CPS4(ELEMENT_2D):
     def __init__(self, data):
         ELEMENT_2D.__init__(self, data)
 
-    def ke_mat(self, e):
-        ke, gdof = self.computeke(e)
+    def computeke(self, e):
+        ke, gdof = self.kemat(e)
         return ke, gdof
 
 class CPE4(ELEMENT_2D):

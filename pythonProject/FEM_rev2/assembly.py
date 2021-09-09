@@ -36,8 +36,7 @@ class ASSEMBLY:
 
         for e in range(self.numel):
             # 요소 강성행렬
-            # Elem_type : CPS4
-            ke, gdof = CPS4(enriched_data).ke_mat(e)
+            ke, gdof = CPS4(enriched_data).computeke(e)               # Elem_type : CPS4
 
             # Global stiffness matrix 조립
             for i in range(len(ke)):
@@ -66,7 +65,6 @@ class ASSEMBLY:
                     # print(nodes)
             else:
                 pass
-
 
 
                 # for gdof in [1, 12]:
@@ -123,7 +121,7 @@ class SOLVE(ASSEMBLY):
     def stress(self, data):
         U = self.displacement(data)
 
-        Dmat = CPS4(data).DMAT()
+        Dmat = CPS4(data).Dmat()
 
         s = 0
         t = 0
