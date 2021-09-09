@@ -1,1 +1,0 @@
-myfile = open('results.plt', 'w')
